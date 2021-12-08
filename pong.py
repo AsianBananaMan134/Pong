@@ -30,7 +30,6 @@ wn.tracer(0)
 """
 Players 1 and 2 stuff
 """
-
 # Player 1
 p1 = trtl.Turtle()
 p1.speed(0)
@@ -59,6 +58,9 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
+ball_x = ball.xcor()
+ball.dx = 2
+ball.dy = 2
 
 """
 Moving Functions
@@ -68,7 +70,7 @@ player_speed = 20
 # Player 1
 def move_up_1():
     y = p1.ycor()
-    y += 20
+    y += player_speed
     p1.sety(y)
     # Makes it so it wont go out of bounds
     if y > 250:
@@ -77,7 +79,7 @@ def move_up_1():
 
 def move_down_1():
     y = p1.ycor()
-    y -= 20
+    y -= player_speed
     p1.sety(y)
     # Makes it so it wont go out of bounds
     if y < -250:
@@ -87,7 +89,7 @@ def move_down_1():
 # Player 2
 def move_up_2():
     y = p2.ycor()
-    y += 20
+    y += player_speed
     p2.sety(y)
     # Makes it so it wont go out of bounds
     if y > 250:
@@ -96,7 +98,7 @@ def move_up_2():
 
 def move_down_2():
     y = p2.ycor()
-    y -= 20
+    y -= player_speed
     p2.sety(y)
     # Makes it so it wont go out of bounds
     if y < -250:
@@ -143,19 +145,39 @@ score_writer2.write(str(p2_score) + " points", font = font_setup)
 def update_score1():
   score_writer1.clear()
   global p1_score
-  p1_score += 10
+  p1_score += 1
   score_writer1.write(str(p1_score) + " points", font = font_setup)
 
 def update_score2():
   score_writer2.clear()
   global p2_score
-  p2_score += 10
+  p2_score += 1
   score_writer2.write(str(p2_score) + " points", font = font_setup)
 
-"""
-While True
-"""
-while True:
-    wn.update()
+#def collision():
+
+# Gameplay
+run = True
+while run:
+  wn.update()
+  # Move the ball
+  ball.setx(ball.xcor() + ball.dx)
+  ball.sety(ball.ycor() + ball.dy)
+
+  if ball.xcor() > 390:
+        ball.goto(0, 0)
+        ball.dx *= -1
+
+  # Score for player 1
+  if ball_x > 300:
+    ball.goto(0, 0)
+    ball.dx *= -1
+    update_score1
+    
+  # Score for player 2
+  elif ball_x < -300:
+    ball.goto(0, 0)
+    ball.dx *= -1
+    update_score2()
 
 wn.mainloop()
