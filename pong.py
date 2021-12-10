@@ -131,6 +131,7 @@ timer = 180
 counter_interval = 1000   #1000 represents 1 second
 timer_up = False
 
+# timer turtle
 def make_timer():
   t.color("white")
   t.forward(100)
@@ -141,32 +142,33 @@ def make_timer():
   t.left(90)
   t.forward(50)
   t.hideturtle()
-  
+
+# rectangle for the timer(timer box)
 def make_big_rectangle():
   counter.color("white")
-  counter.forward(150)
-  counter.left(90)
-  counter.forward(50)
-  counter.left(90)
-  counter.forward(150)
-  counter.left(90)
-  counter.forward(50)
+  for i in range(2):
+    counter.forward(150)
+    counter.left(90)
+    counter.forward(50)
+    counter.left(90)
 
 def countdown():
   global timer, timer_up
   counter.clear()
+  # times up
   if timer <= 0:
     p1.hideturtle()
     p2.hideturtle()
     ball.hideturtle()
     counter.write("Time's Up", font=font_setup)
     timer_up = True
+  # keep going until time runs out
   else:
     counter.write("Timer: " + str(timer), font=font_setup)
     timer -= 1
     counter.getscreen().ontimer(countdown, counter_interval)
 
-# -----make the timer box-----
+# -----set up the timers-----
 t.penup() 
 t.pendown()
 make_timer()
