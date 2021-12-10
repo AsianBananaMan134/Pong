@@ -7,19 +7,19 @@ wn.tracer(0)
 Border
 """
 # border set up
-painter = trtl.Turtle()
-painter.speed(0)
-painter.color("white")
-painter.penup()
-painter.goto(-300,-300)
-painter.pendown()
-painter.pensize(3)
+border = trtl.Turtle()
+border.speed(0)
+border.color("white")
+border.penup()
+border.goto(-300,-300)
+border.pendown()
+border.pensize(3)
 
 # border
 for i in range(4):
-    painter.forward(600)
-    painter.left(90)
-painter.hideturtle()
+    border.forward(600)
+    border.left(90)
+border.hideturtle()
 
 """
 Players 1 and 2 stuff
