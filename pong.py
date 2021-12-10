@@ -2,11 +2,28 @@ import turtle as trtl
 
 wn = trtl.Screen()
 wn.bgcolor("black")
+wn.tracer(0)
+"""
+Border
+"""
+# border set up
+painter = trtl.Turtle()
+painter.speed(0)
+painter.color("white")
+painter.penup()
+painter.goto(-300,-300)
+painter.pendown()
+painter.pensize(3)
+
+# border
+for i in range(4):
+    painter.forward(600)
+    painter.left(90)
+painter.hideturtle()
 
 """
 Players 1 and 2 stuff
 """
-
 # Player 1
 p1 = trtl.Turtle()
 p1.speed(0)
@@ -14,7 +31,7 @@ p1.shape("square")
 p1.color("white")
 p1.shapesize(stretch_wid=5, stretch_len=1)
 p1.penup()
-p1.goto(-350, 0)
+p1.goto(-275, 0)
 
 # Player 2
 p2 = trtl.Turtle()
@@ -23,7 +40,7 @@ p2.shape("square")
 p2.color("white")
 p2.shapesize(stretch_wid=5, stretch_len=1)
 p2.penup()
-p2.goto(350, 0)
+p2.goto(275, 0)
 
 """
 Ball
@@ -36,8 +53,8 @@ ball.color("blue")
 ball.penup()
 ball.goto(0, 0)
 # higher the dx and dy is the fast it gets
-ball.dx = 5
-ball.dy = 5
+ball.dx = 0.5
+ball.dy = 0.5
 
 """
 Moving Functions
@@ -70,6 +87,7 @@ wn.onkeypress(move_up_1, "w")
 wn.onkeypress(move_down_1, "s")
 wn.onkeypress(move_up_2, "Up")
 wn.onkeypress(move_down_2, "Down")
+
 """
 Score Writer
 """
@@ -79,7 +97,7 @@ score_writer1.speed(0)
 score_writer1.color("white")
 score_writer1.penup()
 score_writer1.hideturtle()
-score_writer1.goto(-370,270)
+score_writer1.goto(-285,270)
 score_writer1.pendown()
 
 # Player 2 Score
@@ -88,12 +106,12 @@ score_writer2.speed(0)
 score_writer2.color("white")
 score_writer2.penup()
 score_writer2.hideturtle()
-score_writer2.goto(250,270)
+score_writer2.goto(215,270)
 score_writer2.pendown()
 
 p1_score = 0
 p2_score = 0
-font_setup = ("Arial", "24", "normal")
+font_setup = ("Arial", "15", "normal")
 score_writer1.write(str(p1_score) + " points", font = font_setup)
 score_writer2.write(str(p1_score) + " points", font = font_setup)
 """
@@ -107,34 +125,34 @@ while True:
     ball.sety(ball.ycor() + ball.dy)
 
     # Ball and Wall Collision
-    if ball.ycor() > 290:
-        ball.sety(290)
+    if ball.ycor() > 280:
+        ball.sety(280)
         ball.dy *= -1
     
-    elif ball.ycor() < -290:
-        ball.sety(-290)
+    elif ball.ycor() < -280:
+        ball.sety(-280)
         ball.dy *= -1
 
     # Score
-    if ball.xcor() > 350:
+    if ball.xcor() > 290:
         p1_score += 1
         score_writer1.clear()
         score_writer1.write(str(p1_score) + " points", font = font_setup)
         ball.goto(0, 0)
         ball.dx *= -1
 
-    elif ball.xcor() < -350:
+    elif ball.xcor() < -290:
         p2_score += 1
         score_writer2.clear()
-        score_writer2.write(str(p1_score) + " points", font = font_setup)
+        score_writer2.write(str(p2_score) + " points", font = font_setup)
         ball.goto(0, 0)
         ball.dx *= -1
 
     # Collision for players and ball
-    if ball.xcor() < -340 and ball.ycor() < p1.ycor() + 50 and ball.ycor() > p1.ycor() - 50:
+    if ball.xcor() < -260 and ball.ycor() < p1.ycor() + 50 and ball.ycor() > p1.ycor() - 50:
         ball.dx *= -1 
     
-    elif ball.xcor() > 340 and ball.ycor() < p2.ycor() + 50 and ball.ycor() > p2.ycor() - 50:
+    elif ball.xcor() > 260 and ball.ycor() < p2.ycor() + 50 and ball.ycor() > p2.ycor() - 50:
         ball.dx *= -1
 
 wn.mainloop()
