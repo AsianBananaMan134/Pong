@@ -130,7 +130,7 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
-    # make the paddle reflect the ball
+    # Make the paddle reflect the ball
     if ball.xcor() < -340 and ball.ycor() < p1.ycor() + 50 and ball.ycor() > p1.ycor() - 50:
         ball.dx *= -1 
     
