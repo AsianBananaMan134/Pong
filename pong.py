@@ -32,7 +32,7 @@ Ball
 ball = trtl.Turtle()
 ball.speed(0)
 ball.shape("square")
-ball.color("white")
+ball.color("blue")
 ball.penup()
 ball.goto(0, 0)
 # higher the dx and dy is the fast it gets
