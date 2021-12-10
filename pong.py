@@ -114,6 +114,70 @@ p2_score = 0
 font_setup = ("Arial", "15", "normal")
 score_writer1.write(str(p1_score) + " points", font = font_setup)
 score_writer2.write(str(p1_score) + " points", font = font_setup)
+
+"""
+Timer
+"""
+#-----make a rectangle box for the score-----
+t = trtl.Turtle()
+counter =  trtl.Turtle() 
+counter.speed(0)
+t.penup()
+t.goto(-30,220)
+t.pendown()
+
+#-----countdown variables-----
+timer = 180
+counter_interval = 1000   #1000 represents 1 second
+timer_up = False
+
+def make_timer():
+  t.color("white")
+  t.forward(100)
+  t.left(90)
+  t.forward(50)
+  t.left(90)
+  t.forward(100)
+  t.left(90)
+  t.forward(50)
+  t.hideturtle()
+  
+def make_big_rectangle():
+  counter.color("white")
+  counter.forward(150)
+  counter.left(90)
+  counter.forward(50)
+  counter.left(90)
+  counter.forward(150)
+  counter.left(90)
+  counter.forward(50)
+
+def countdown():
+  global timer, timer_up
+  counter.clear()
+  if timer <= 0:
+    p1.hideturtle()
+    p2.hideturtle()
+    ball.hideturtle()
+    counter.write("Time's Up", font=font_setup)
+    timer_up = True
+  else:
+    counter.write("Timer: " + str(timer), font=font_setup)
+    timer -= 1
+    counter.getscreen().ontimer(countdown, counter_interval)
+
+# -----make the timer box-----
+t.penup() 
+t.pendown()
+make_timer()
+counter.penup()
+counter.goto(-25,240)
+counter.pendown()
+make_big_rectangle()
+t.hideturtle()
+counter.hideturtle()
+countdown()
+
 """
 While True
 """
@@ -156,3 +220,4 @@ while True:
         ball.dx *= -1
 
 wn.mainloop()
+wn.ontimer(countdown, counter_interval)
