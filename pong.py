@@ -83,10 +83,10 @@ def move_down_2():
 
 # Keyboard
 wn.listen()
-wn.onkeypress(move_up_1, "w")
-wn.onkeypress(move_down_1, "s")
-wn.onkeypress(move_up_2, "Up")
-wn.onkeypress(move_down_2, "Down")
+wn.onkey(move_up_1, "w")
+wn.onkey(move_down_1, "s")
+wn.onkey(move_up_2, "Up")
+wn.onkey(move_down_2, "Down")
 
 """
 Score Writer
