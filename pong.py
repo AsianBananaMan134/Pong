@@ -106,7 +106,7 @@ while True:
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
 
-    # Reflect
+    # Ball and Wall Collision
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
@@ -130,7 +130,7 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
-    # Make the paddle reflect the ball
+    # Collision for players and ball
     if ball.xcor() < -340 and ball.ycor() < p1.ycor() + 50 and ball.ycor() > p1.ycor() - 50:
         ball.dx *= -1 
     
